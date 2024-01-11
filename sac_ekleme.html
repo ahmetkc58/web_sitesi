@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hok Kilit A.Ş</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <style>
+        a {
+            font-size: 5px;
+            font-weight: bold;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 30px;
+            font-weight: bold;
+
+        }
+
+        img {
+            margin-right: 8px;
+            width: 50px;
+            /* Genişlik */
+            height: 50px;
+            /* Otomatik yükseklik ayarlanması */
+        }
+
+        /* burası üst kısımın css i  */
+        .header {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #192841;
+            color: #D3D3D3;
+            font-family: Arial, sans-serif;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            /* Metin boyutu */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            /* Metin gölgesi */
+        }
+
+
+        .container {
+            margin-top: 100px;
+            margin-left: 300px;
+            text-align: center;
+            width: 500px;
+            height: 200px;
+        }
+
+        form {
+
+            height: 300px;
+            transform: scale(1.5);
+        }
+
+        .table-responsive.small table {
+            font-size: 18px;
+            /* İçeriğin boyutunu artırmak için */
+            /* İlgili diğer stil özelliklerini burada düzenleyebilirsiniz */
+        }
+
+
+        select {
+            padding: 8px;
+            margin: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 200px;
+            font-size: 16px;
+        }
+
+
+        input[type="text"],
+
+        select {
+            padding: 5px;
+            margin: 3px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            width: 150px;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+
+            padding: 4px 8px;
+            margin: 3px;
+            border-radius: 3px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            font-size: 12px;
+            cursor: pointer;
+            width: 90px;
+        }
+        .Button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            background-color:#007bff ;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- ---------------------------------- -->
+
+    <div class="header">
+        <h1>Hok Kilit A.Ş</h1>
+    </div>
+
+    <!-- ---------------------------------------------------- -->
+
+
+
+
+
+    <div style="display: flex; gap: 20px;">
+        <div style="flex: 1;">
+            <div style=" width: 220%; min-height: 100vh; background-color:#D3D3D3;  " class=" custom-column">
+
+                <ul class="nav flex-column">
+                    <li>
+                        <br><br>
+                        <a class="nav-link " aria-current="page" href="deney.html">
+                            <img src="C:\Users\samie\OneDrive\Desktop\web dersi\web_dersi\web_proje\svg\house-fill.svg">
+                            ana menü
+                        </a>
+                    </li>
+                    <br><br>
+                    <li>
+                        <a class="nav-link" href="sac_ekleme.html">
+                            <img
+                                src="C:\Users\samie\OneDrive\Desktop\web dersi\web_dersi\web_proje\svg\bookmark-plus-fill.svg">
+                            malzeme ekleme
+                        </a>
+                    </li>
+                    <br><br>
+                    <li>
+                        <a class="nav-link " href="sac_çıkartma.html">
+                            <img
+                                src="C:\Users\samie\OneDrive\Desktop\web dersi\web_dersi\web_proje\svg\bookmark-dash.svg">
+                            malzeme çıkartma
+                        </a>
+                    </li>
+                    <br><br>
+                </ul>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <form id="veriFormu" class="container">
+            <input type="text" id="veri" placeholder="Birinci Veri">
+            <br><br>
+            <input style="width: 150px;" type="number" id="adet" name="yas" placeholder="adet sayısı">
+            <br><br>
+            <button onclick="veriEkle()" class="Button"> ekle</button>
+        </form>
+
+
+
+        <div style="width: 100% ;flex: 3;">
+            <table id="veriTablosu" border="1" class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">malzeme kalınlığı</th>
+                        <th scope="col">malzeme boyutu</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+
+
+        <script>
+            function veriEkle() {
+                var inputVeri = document.getElementById('veri').value;
+                var inputAdet = parseInt(document.getElementById('adet').value);
+
+                var eskiVeriler = localStorage.getItem('kayitlar');
+                var yeniVeriler = eskiVeriler ? JSON.parse(eskiVeriler) : [];
+
+                if (inputVeri.trim() === '' || isNaN(inputAdet)) {
+                    alert("Lütfen geçerli bir adet girin!");
+                    return;
+                }
+
+                var varMi = false;
+                yeniVeriler.forEach(function (veri) {
+                    if (veri.veri === inputVeri) {
+                        veri.adet += inputAdet;
+                        varMi = true;
+                    }
+                });
+
+                if (!varMi) {
+                    var yeniVeri = {
+                        veri: inputVeri,
+                        adet: inputAdet
+                    };
+                    yeniVeriler.push(yeniVeri);
+                }
+
+                localStorage.setItem('kayitlar', JSON.stringify(yeniVeriler));
+
+                tabloGoster();
+
+                document.getElementById('veri').value = '';
+                document.getElementById('adet').value = '';
+            }
+
+            function tabloGoster() {
+                var tablo = document.getElementById('veriTablosu');
+                var tabloGovdesi = tablo.querySelector('tbody');
+                tabloGovdesi.innerHTML = '';
+
+                var eskiVeriler = localStorage.getItem('kayitlar');
+                var yeniVeriler = eskiVeriler ? JSON.parse(eskiVeriler) : [];
+
+                yeniVeriler.forEach(function (veri, index) {
+                    var satir = tabloGovdesi.insertRow();
+
+                    var hucreIndex = satir.insertCell(0);
+                    hucreIndex.textContent = index + 1;
+
+                    var hucreVeri = satir.insertCell(1);
+                    hucreVeri.textContent = veri.veri;
+
+                    var hucreAdet = satir.insertCell(2);
+                    hucreAdet.textContent = veri.adet;
+                });
+            }
+
+            window.onload = function () {
+                tabloGoster();
+            };
+        </script>
+
+
+
+
+</body>
+
+</html>

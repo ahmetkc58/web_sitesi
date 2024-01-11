@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hok Kilit A.Ş</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <style>
+        a {
+            font-size: 5px;
+            font-weight: bold;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 30px;
+            font-weight: bold;
+
+        }
+
+        img {
+            margin-right: 8px;
+            width: 50px;
+            /* Genişlik */
+            height: 50px;
+            /* Otomatik yükseklik ayarlanması */
+        }
+
+        /* burası üst kısımın css i  */
+        .header {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #192841;
+            color: #D3D3D3;
+            font-family: Arial, sans-serif;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            /* Metin boyutu */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            /* Metin gölgesi */
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- ---------------------------------- -->
+
+    <div class="header">
+        <h1>Hok Kilit A.Ş</h1>
+    </div>
+
+    <!-- ---------------------------------------------------- -->
+
+
+
+
+
+    <div style="display: flex; gap: 20px;">
+        <div style="flex: 1;">
+            <div style=" width: 100%; min-height: 100vh; background-color:#D3D3D3;  " class=" custom-column">
+
+                <ul class="nav flex-column">
+                    <li>
+                        <br><br>
+                        <a class="nav-link " aria-current="page" href="deney.html">
+                            <img src="C:\Users\samie\OneDrive\Desktop\web dersi\web_dersi\web_proje\svg\house-fill.svg">
+                            ana menü
+                        </a>
+                    </li>
+                    <br><br>
+                    <li>
+                        <a class="nav-link" href="sac_ekleme.html">
+                            <img
+                                src="C:\Users\samie\OneDrive\Desktop\web dersi\web_dersi\web_proje\svg\bookmark-plus-fill.svg">
+                            malzeme ekleme
+                        </a>
+                    </li>
+                    <br><br>
+                    <li>
+                        <a class="nav-link " href="sac_çıkartma.html">
+                            <img
+                                src="C:\Users\samie\OneDrive\Desktop\web dersi\web_dersi\web_proje\svg\bookmark-dash.svg">
+                            malzeme çıkartma
+                        </a>
+                    </li>
+                    <br><br>
+                </ul>
+            </div>
+        </div>
+
+
+        <div style="flex: 3;">
+            <div style="width: 100%; ">
+                <div class="table-responsive small">
+                    <table id="veriTablosu" border="1" class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">malzeme kalınlığı</th>
+                                <th scope="col">malzeme boyutu</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            function tabloGoster() {
+                var tablo = document.getElementById('veriTablosu');
+                var tabloGovdesi = tablo.querySelector('tbody');
+                tabloGovdesi.innerHTML = '';
+
+                var eskiVeriler = localStorage.getItem('kayitlar');
+                var yeniVeriler = eskiVeriler ? JSON.parse(eskiVeriler) : [];
+
+                yeniVeriler.forEach(function (veri, index) {
+                    var satir = tabloGovdesi.insertRow();
+
+                    var hucreIndex = satir.insertCell(0);
+                    hucreIndex.textContent = index + 1;
+
+                    var hucreVeri = satir.insertCell(1);
+                    hucreVeri.textContent = veri.veri;
+
+                    var hucreAdet = satir.insertCell(2);
+                    hucreAdet.textContent = veri.adet;
+                });
+            }
+
+            window.onload = function () {
+                tabloGoster();
+            };
+        
+            window.onload = tabloGoster;
+        </script>
+        </script>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- ------------------------------------------------------------------------------------------------------------------- -->
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
